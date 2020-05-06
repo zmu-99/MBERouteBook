@@ -1,0 +1,67 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_maintenanceworkorder</EntityName>
+    <CamelCase>iroc_maintenanceworkorder</CamelCase>
+  </Attributes>
+  <Name>Work Orders in SAP</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>createdon</string>
+    <string>iroc_name</string>
+    <string>iroc_maintenanceworkorderid</string>
+    <string>modifiedon</string>
+    <string>owningteam</string>
+    <string>owningteam.team.name</string>
+    <string>ownerid.systemuser.fullname</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_name">
+          <StyleName>primary</StyleName>
+          <Bounds>6,2,134,16</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_maintenanceworkorderid">
+          <StyleName>primary</StyleName>
+          <Bounds>6,19,134,14</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="owningteam">
+          <StyleName>primary</StyleName>
+          <Bounds>141,3,136,16</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="owningteam.team.name">
+          <StyleName>primary</StyleName>
+          <Bounds>142,19,136,14</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdon">
+          <StyleName>primary</StyleName>
+          <Bounds>5,35,136,13</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="modifiedon">
+          <StyleName>primary</StyleName>
+          <Bounds>141,35,136,13</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

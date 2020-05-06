@@ -1,0 +1,190 @@
+﻿<model version="7" Chat="true" ActivityFeeds="true" publish="23">
+  <entities>
+    <entity schema="activityparty">
+      <properties>
+        <property schema="activityid"/>
+        <property schema="activitypartyid"/>
+        <property schema="addressused"/>
+        <property schema="participationtypemask"/>
+        <property schema="partyid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_activityparty_partyid" issystem="true">
+          <fields>
+            <field schema="partyid"/>
+          </fields>
+        </index>
+        <index schema="idx_activityparty_activityid" issystem="true">
+          <fields>
+            <field schema="activityid"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_detectionmethodgroup">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_detectionmethodcode"/>
+        <property schema="iroc_detectionmethoddescription"/>
+        <property schema="iroc_detectionmethodgroupid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="ownerid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_detectionmethodgroup_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_detectionmethodgroup_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_failureimpact">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_failureimpactid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="ownerid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_failureimpact_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_failureimpact_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_failuremechanismgroup">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_failuremechanismgroupid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="ownerid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_failuremechanismgroup_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_failuremechanismgroup_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_failuremodegroup">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_failuremodegroupid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="ownerid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_failuremodegroup_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_failuremodegroup_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_functionallocation" permissions="768" xattr="768">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_functionallocationid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="ownerid"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_functionallocation_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_functionallocation_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+    <entity schema="iroc_maintenanceworkorder" permissions="768" xattr="768">
+      <properties>
+        <property schema="createdon"/>
+        <property schema="iroc_maintenanceworkorderid"/>
+        <property schema="iroc_name"/>
+        <property schema="modifiedon"/>
+        <property schema="overriddencreatedon"/>
+        <property schema="ownerid"/>
+        <property schema="owningbusinessunit"/>
+        <property schema="owningteam"/>
+        <property schema="owninguser"/>
+        <property schema="statecode"/>
+        <property schema="statuscode"/>
+      </properties>
+      <indexes>
+        <index schema="idx_iroc_maintenanceworkorder_owninguser" issystem="true">
+          <fields>
+            <field schema="owninguser"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_maintenanceworkorder_owningbusinessunit" issystem="true">
+          <fields>
+            <field schema="owningbusinessunit"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_maintenanceworkorder_owningteam" issystem="true">
+          <fields>
+            <field schema="owningteam"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_maintenanceworkorder_ownerid" issystem="true">
+          <fields>
+            <field schema="ownerid"/>
+          </fields>
+        </index>
+        <index schema="idx_iroc_maintenanceworkorder_iroc_name" issystem="true">
+          <fields>
+            <field schema="iroc_name"/>
+          </fields>
+        </index>
+      </indexes>
+    </entity>
+  </entities>
+  <home>@Dashboard;;Performance Dashboard</home>
+  <home>account</home>
+  <home>contact</home>
+  <home>bookableresourcebooking;;&lt;extra&gt;&lt;views&gt;bookableresourcebooking.*:bookableresourcebooking.@Bookings&lt;/views&gt;&lt;actions&gt;3;;1&lt;/actions&gt;&lt;/extra&gt;</home>
+  <home>msdyn_workorder;;msdyn_workorder.Default</home>
+  <home>product</home>
+  <home>msdyn_customerasset</home>
+  <home>msdyn_iotalert</home>
+  <home>msdyn_iotdevice</home>
+  <home>msdyn_timeoffrequest</home>
+  <home>@activity</home>
+  <home>@@ScanCustomerAsset;file://CustomerAsset/ScanCustomerAsset.html</home>
+  <home>@Map;;Map</home>
+  <home>@Setup</home>
+  <home>@About</home>
+  <home>@@Feedback;</home>
+</model>

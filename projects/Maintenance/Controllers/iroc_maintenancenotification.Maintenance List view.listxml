@@ -1,0 +1,55 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_maintenancenotification</EntityName>
+    <CamelCase>iroc_maintenancenotification</CamelCase>
+  </Attributes>
+  <Name>Maintenance List view</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>createdon</string>
+    <string>iroc_functionallocationid</string>
+    <string>iroc_maintenancenotificationid</string>
+    <string>iroc_sapnotificationid</string>
+    <string>iroc_notificationtitle</string>
+    <string>iroc_notificationtype</string>
+    <string>iroc_padid</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>primary</StyleName>
+          <Bounds>4,28,125,18</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_notificationtype">
+          <StyleName>primary</StyleName>
+          <Bounds>4,0,82,14</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_notificationtitle">
+          <StyleName>primary</StyleName>
+          <Bounds>4,14,240,14</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_sapnotificationid">
+          <StyleName>primary</StyleName>
+          <Bounds>247,2,73,14</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

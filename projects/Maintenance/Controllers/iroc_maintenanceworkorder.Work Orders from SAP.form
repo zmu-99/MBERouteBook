@@ -1,0 +1,29 @@
+﻿<EntityForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:dummy="0" flexi="0" fleximode="1" fullscreen="0" resize="0" version="2">
+  <IsContactForm>false</IsContactForm>
+  <EntityName>iroc_maintenanceworkorder</EntityName>
+  <CamelCase>iroc_maintenanceworkorder</CamelCase>
+  <PrimaryCommands>!defcmd</PrimaryCommands>
+  <EnabledWorkflows>OnLoadEnabled OnChangeEnabled OnSaveEnabled OnExecuteCommand OnCanExecuteCommand OnExecuteButton</EnabledWorkflows>
+  <SerializedChildrenV2>
+    <FormTab xsi:type="DetailTab">
+      <Name>General</Name>
+      <SerializedChildren>
+        <DetailItem SchemaName="iroc_name"/>
+        <DetailItem SchemaName="iroc_maintenanceworkorderid"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="statecode"/>
+        <DetailItem SchemaName="createdon"/>
+        <DetailItem SchemaName="modifiedon"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="ownerid"/>
+        <DetailItem SchemaName="owningteam"/>
+        <DetailItem SchemaName="owninguser"/>
+        <DetailItem SchemaName="owningbusinessunit"/>
+      </SerializedChildren>
+    </FormTab>
+  </SerializedChildrenV2>
+</EntityForm>
