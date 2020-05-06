@@ -1,0 +1,49 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_vehicleinspection</EntityName>
+    <CamelCase>iroc_vehicleinspection</CamelCase>
+  </Attributes>
+  <Name>Completed </Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>iroc_vehicleinspectionid</string>
+    <string>iroc_name</string>
+    <string>iroc_vehicleinspectionstatus</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="iroc_vehicleinspection">
+      <filter type="and">
+        <condition attribute="iroc_vehicleinspectionstatus" operator="in">
+          <value>929530000</value>
+          <value>929530001</value>
+        </condition>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_name">
+          <StyleName>primary</StyleName>
+          <Bounds>10,2,302,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_vehicleinspectionstatus">
+          <StyleName>primary</StyleName>
+          <Bounds>10,28,200,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>
