@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Service Items</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+     <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="ServiceItem.js"></script>
+    <script type="text/javascript" src="../Telemetry.js"></script>
+    <link rel="stylesheet" type="text/css" href="../irocStyles.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.easy-pie-chart.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 75px;
+            height: 75px;
+            margin: -75px 0 0 -75px;
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #007079;
+            width: 75px;
+            height: 75px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main role="main">
+        <div id="loader"></div>
+
+        <div align="right">
+            <span class="irocTitle">
+                <select class="irocSelectionList" id="foremangroupfilter" onchange="FS.ServiceItem.onchange()"></select>
+            </span>
+        </div>
+        <br />
+        <div>
+            <table id="tablelist" class='table table-hover irocMainTable'><th></th></table>
+        </div>
+        <div id="noRecords">
+            <p class="irocTitle"> NO RECORDS FOR SELECTED FILTER</p>
+        </div>
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            FS.ServiceItem.onloadFunction();    
+        });
+    </script>
+</body>
+</html>

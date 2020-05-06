@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>RouteBoard</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="popper.min.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="../Schema.js"></script>
+    <script type="text/javascript" src="../Common.js"></script>
+    <script type="text/javascript" src="../Enums.js"></script>
+    <script type="text/javascript" src="bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <script type="text/javascript" src="NewRouteBoardDesign.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="NewRouteBoard.css" />
+
+</head>
+
+<body>
+    <!--Start of Loading Gif-->
+    <div id="logoLoader" class="logo-loader-container">
+        <img class="logo-loader" src="Media/LogoLoader.gif">
+        <h1>Loading...</h1>
+    </div>
+    <!--End of Loading Gif-->
+
+    <!--Start of Create New Hidden by default -->
+    <div id="createNewModal" class="logo-loader-container">
+        <div class="create-new-button-container">
+            <button class="close-button" id="closeNewEvent">Close</button>
+            <h1>Create New</h1>
+            <button class="create-new-button" id="clickedNewJob" onclick="FS.RouteBoard.createNewJob()">New Job</button>
+            <button class="create-new-button" id="clickedSN"
+                onclick="FS.RouteBoard.createNewSafetyNotification()">Safety Flash</button>
+        </div>
+    </div>
+    <!--End of Create New -->
+
+    <!--Start of Menu and Filter-->
+    <div id="toggleSwitch" class="menu-status-container">
+
+        <!--Start of Context Menu-->
+        <div class="context-menu-container">
+            <div class="image-container">
+                <p class="logo-text">Digital<b>GLU</b></p>
+            </div>
+            <div class="context-menu-icons">
+                <div id="notificationEvent">
+                    <img id="notificationOn" src="./Media/notifications.svg" />
+                    <img id="notificationOff" src="./Media/notifications-off.svg" />
+                </div>
+                <img onclick="FS.RouteBoard.openUserGuide()" src="./Media/help-circle.svg" />
+                <div id="createNewEvent">
+                    <img src="./Media/add-circle.svg" />
+                </div>
+
+            </div>
+        </div>
+        <!--End of Context Menu-->
+
+        <!-- Start of Filter Menu-->
+        <div>
+            <div class="filter-close">
+                <div>
+                    <p id="filterText" class="filter-text">Filter</p>
+                </div>
+                <div id="filterEvent" class="filter-icon-container">
+                    <img src="./Media/chevron-down.svg" class="chevronDown" />
+                    <img src="./Media/chevron-up.svg" class="chevronUp" />
+                </div>
+            </div>
+            <div class="filter-open">
+                <div>
+                    <p>Record Type: </p>
+                    <select id="recordType" class="iroc-selection-list">
+                        <option value="Select A Record Type" selected>Select A Record Type</option>
+                        <option value="Lease Inspection">Lease Inspection</option>
+                        <option value="Service Item">Service Item</option>
+                    </select>
+                </div>
+                <div class="filter-text-2">
+                    <p>Filter</p>
+                </div>
+                <div>
+                    <p>Foreman Group: </p>
+                    <select id="foremangroupfilter" class="iroc-selection-list" multiple="multiple">
+                    </select>
+                </div>
+                <div>
+                    <p>Resource Group: </p>
+                    <select id="resourcefilter" class="resource-selection-list" multiple="multiple">
+                    </select>
+                </div>
+                <div>
+                    <p>Job Type: </p>
+                    <select id="jobfilter" class="iroc-selection-list" multiple="multiple">
+                    </select>
+                </div>
+
+                <div>
+                    <p>Date: </p>
+                    <input id="datefilter" type="date"
+                        onchange="FS.RouteBoard.dateFilter('change',this); return false;" />
+                </div>
+
+                <div>
+                    <p>Status: </p>
+                    <select id="bookingStatusFilter" class="iroc-selection-list" multiple="multiple">
+                        <option value="Scheduled" selected>Scheduled</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of Filter Menu-->
+
+        <!--Start of Status Bar-->
+        <div class="status-bar">
+            <p class="status-bar-text">Found <span id="counter" class="counter"></span> jobs matching current filter</p>
+        </div>
+        <!--End of Status Bar-->
+
+    </div>
+    <!--End of Menu and Filter-->
+
+    <!--Start of BRB Cards-->
+    <div id='card' class="card-container"></div>
+    <!--End of BRB Cards-->
+
+    <!--Start of Missed Reasons Hidden by default-->
+    <div id="reasons">
+        <table>
+            <tr onclick="FS.RouteBoard.onClose()">
+                <td style="text-align:left;" class="irocTitle">Return/Cancel<img style="height:55px"
+                        src="./Media/return.svg" alt="Return/Cancel" /></td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="reason" class="irocSelectLabel"><br /><br />You have chosen to miss this visit,
+                        please select why:</label>
+                    <select class="irocSelectionList" style="height: auto; width:auto;" id="reason">
+                        <option value=-1></option>
+                    </select>
+                </th>
+            </tr>
+            <tr onclick="FS.RouteBoard.onSave()"">
+                <td style=" text-align:center;" class="irocTitle">Save<img style="height:45px" src="./Media/save.svg"
+                    alt="Save" />
+                </td>
+            </tr>
+            <tr onclick="FS.RouteBoard.onClose()">
+                <td style="text-align:left;" class="irocTitle"><br /> <br />Return/Cancel<img style="height:55px"
+                        src="./Media/return.svg" alt="Return/Cancel" /></td>
+            </tr>
+            <tr>
+                <td id="reasonerror" class="irocTitleRed">Must select reason to save.</td>
+            </tr>
+        </table>
+        <br />
+    </div>
+    <!--End of Missed Reasons-->
+
+    <!-- Start of Assign BRB Hidden by default-->
+    <div id="assign">
+        <div onclick="FS.RouteBoard.onClose()" style="text-align:left;" class="irocTitle">
+            Return/Cancel<img style="height:55px" src="./Media/return.svg" alt="Return/Cancel" />
+        </div>
+        <div class="irocSelectLabel">
+            <br /><br />Reassign this booking to:
+        </div>
+        <div class="irocSelectionList">
+            <select class="irocSelectionList" style="height: auto; width:auto;" id="assigntofilter">
+                <option value=-1></option>
+            </select>
+        </div>
+        <div onclick='FS.RouteBoard.onAssign()' style="text-align:center;" class="irocTitle">
+            Save<img style="height:55px" src="./Media/save.svg" alt="Save" />
+        </div>
+        <div onclick="FS.RouteBoard.onClose()" style="text-align:left;" class="irocTitle">
+            <br /> <br />Return/Cancel<img style="height:55px" src="./Media/return.svg" alt="Return/Cancel" />
+        </div>
+
+        <div id="assignerror" class="irocTitleRed">
+            Must select resource to save.
+        </div>
+        <br />
+    </div>
+    <!-- End of Assign BRB -->
+
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        FS.RouteBoard.setClick();
+        FS.RouteBoard.onloadFunction();
+
+        $("#recordType").change(function () {
+            const selectedOption = $("#recordType option:selected").text();
+            switch (selectedOption) {
+                case "Lease Inspection":
+                    MobileCRM.UI.IFrameForm.requestObject(function (iFrame) {
+                        MobileCRM.UI.IFrameForm.show("Lease Inspection", "file://MBELeaseInspection/LeaseByFG_bgarr.html", false);
+                    }, MobileCRM.bridge.alert, null);
+                    break;
+                case "Service Item":
+                    MobileCRM.UI.IFrameForm.requestObject(function (iFrame) {
+                        MobileCRM.UI.IFrameForm.show("Service Item", "file://MBEServiceItem/ServiceItem.html", false);
+                    }, MobileCRM.bridge.alert, null);
+                    break;
+                default:
+                    break;
+            }
+        });
+       
+    });
+</script>
+
+
+
+</html>

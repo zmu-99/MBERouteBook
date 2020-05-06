@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>RouteBoard</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="popper.min.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="../Schema.js"></script>
+    <script type="text/javascript" src="../Common.js"></script>
+    <script type="text/javascript" src="../Enums.js"></script>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+    <script type="text/javascript" src="bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap-multiselect.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+
+    <style>
+        /* Center the loader */
+        @font-face {
+            font-family: SegoeUI;
+            src: url(SegoeUI.ttf);
+        }
+
+        @font-face {
+            font-family: SegoeUIBold;
+            src: url(SegoeUIBold.ttf);
+        }
+
+        html,
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: SegoeUI !important;
+             overflow-y:hidden;
+             height: 100vh;
+  
+        }
+
+        .bold-logo {
+            font-family: SegoUIBold !important;
+        }
+
+
+        h1 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007079;
+        }
+
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            margin-top:5px;
+
+        }
+
+        .card {
+
+            border-bottom: 1px solid grey;
+            display: grid;
+            grid-template-columns: 15px auto 0px;
+            grid-template-rows: 115px;
+            padding-right: 10px;
+
+
+        }
+
+        .card-container {
+
+            width: 100%;
+            height: 100%;
+            margin-top: 153px;
+            overflow-x: hidden;
+            background:pink;
+            overflow-y:visible;
+        }
+
+        .display-none {
+            display: none !important;
+        }
+
+
+
+        .red {
+            width: 100%;
+            height: 100%;
+            background-color: #FFB8C7;
+        }
+
+        .maintenance-color {
+            background-color: #D5EAF4;
+        }
+
+
+
+        .side-menu {
+            width: 0px;
+            background-color: white;
+            transition: width 0.5s ease;
+
+        }
+
+        .side-menu>div {
+            visibility: hidden;
+        }
+
+        .side-menu-swiped-left>div {
+            visibility: visible;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .side-menu-swiped-left>div>p {
+            white-space: normal;
+        }
+
+        .side-menu-swiped-left {
+            width: 100% !important;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding-left: 5px;
+
+
+        }
+
+        .side-menu-swiped-right {
+            width: 0%;
+        }
+
+        .side-menu>div>img {
+            width: 35px;
+            height: 35px;
+
+        }
+
+
+        .actual-card {
+            padding-left: 10px;
+        }
+
+        .visit-type {
+            font: size 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: #747474;
+        }
+
+        .assigned-text {
+            font-size: 16px;
+            color: #707070;
+        }
+
+        .status-bar {
+            background-color: #E2E2E2;
+            width: 100%;
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 3px;
+        }
+
+        .status-bar-text {
+            font-size: 16;
+            color: #007079;
+
+        }
+
+        .time-icon-tray>img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .context-menu-container {
+            display: flex;
+            align-content: center;
+            width: 100%;
+            justify-content: space-between;
+            background-color: white;
+            height: 60px;
+            -webkit-box-shadow: 0px 16px 26px -1px rgba(0, 0, 0, 0.43);
+            -moz-box-shadow: 0px 16px 26px -1px rgba(0, 0, 0, 0.43);
+            box-shadow: 0px 16px 26px -1px rgba(0, 0, 0, 0.43);
+        }
+
+        .context-menu-icons>img {
+            width: 30px;
+            height: 30px;
+            padding-right: 15px;
+        }
+
+        .context-menu-icons {
+            display: flex;
+            align-items: center;
+
+        }
+
+        .logo-text {
+            font-size: 18px;
+            padding-left: 5px;
+            margin-top:5px;
+        }
+
+        .image-container {
+            display: flex;
+            padding-left: 10px;
+            align-items: center;
+
+        }
+
+        .logo-img {
+            width: 30px;
+            height: 30px;
+            padding-top: -5px;
+            fill: #FF1243;
+
+
+        }
+
+        .logo-img>svg {
+            fill: #FF1243;
+        }
+
+        .menu-status-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .filter-close {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #D5EAF4;
+        }
+
+        .filter-close>p {
+            font-size: 18px;
+        }
+
+        .filter-close>img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .filter-icon-container>img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .filter-open>div {
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .filter-open {
+            background: white;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .filter-dropdown-container>div>label {
+            font-size: 16px;
+        }
+
+        .filter-text {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .filter-text-2 {
+            background-color: #F6F6F6;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .filter-open>div {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            padding-top:10px;
+            padding-right: 10px;
+            padding-left: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="menu-status-container">
+        <!--Start of Context Menu-->
+        <div class="context-menu-container">
+            <div class="image-container">
+                <img src="equinor_logo.svg" class="logo-img" />
+                <p class="logo-text">Digital<b>GLU</b></p>
+            </div>
+            <div class="context-menu-icons">
+                <img src="./Media/notifications.svg" />
+                <img src="./Media/help-circle.svg" />
+                <img src="./Media/add-circle.svg" />
+
+            </div>
+        </div>
+        <!--End of Context Menu-->
+        <!-- Start of Filter Menu-->
+        <div>
+            <div class="filter-close">
+                <div>
+                    <p id="filter-text" class="filter-text"> </p>
+                </div>
+                <div id="filterEvent" class="filter-icon-container">
+                    <img src="./Media/chevron-down.svg" class="chevronDown" />
+                    <img src="./Media/chevron-up.svg" class="chevronUp" />
+                </div>
+            </div>
+            <div class="filter-open">
+                <div>
+                    <p>Search: </p><input type="text">
+                </div>
+                <div class="filter-text-2">
+                    <p>Filter</p>
+                </div>
+                <div>
+                    <p>Foreman Group: </p>
+                    <select id="foremanGroup" class="iroc-selection-list" multiple="multiple">
+                        <option value="cheese">Adam Jarmin</option>
+                        <option value="tomatoes">Kurt Fixen</option>
+                        <option value="tomatoes">Mike Filkowski</option>
+                        <option value="tomatoes">Luis Reyna</option>
+                        <option value="tomatoes">Kurt Fixen</option>
+                        <option value="tomatoes">Jeff Proberts</option>
+                        <option value="tomatoes">Kellen Forbregd</option>
+                    </select>
+                </div>
+                <div>
+                    <p>Resource Group: </p>
+                    <select id="resourceGroup" class="iroc-selection-list" multiple="multiple">
+                        <option value="cheese">Cheese</option>
+                        <option value="tomatoes">Tomatoes</option>
+                    </select>
+                </div>
+                <div>
+                    <p>Job Type: </p>
+                    <select id="jobType" class="iroc-selection-list" multiple="multiple">
+                        <option value="cheese">Cheese</option>
+                        <option value="tomatoes">Tomatoes</option>
+                    </select>
+                </div>
+                <div>
+                    <p>Date: </p>
+                    <input type="date" />
+                </div>
+
+                <div>
+                    <p>Status: </p>
+                    <select id="status" class="iroc-selection-list" multiple="multiple">
+                        <option value="cheese">Scheduled</option>
+                        <option value="tomatoes">Completed</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- End of Filter Menu-->
+        <!--Start of Status Bar-->
+        <div class="status-bar">
+            <p class="status-bar-text">Found <b>2</b> jobs matching current filter</p>
+        </div>
+        <!--End of Status Bar-->
+    </div>
+    <!--Start of BRB Cards-->
+    <div id="card" class="card-container">
+        <span id="card1" class="card">
+            <div class="red"></div>
+            <div id="content" class="card-grid">
+
+                <div id="actualCard" class="actual-card">
+                    <div>
+                        <p class="visit-type">Maintenance Support</p>
+                        <p class="assigned-text">Queue -Adam Jarmin</p>
+                        <h1>Anderson East</h1>
+                    </div>
+
+                </div>
+
+                <div class="time-icon-tray">
+                    <p>8:30am</p>
+                    <img src="./Media/alert-circle.svg" />
+                    <img src="./Media/clipboard.svg" />
+                </div>
+            </div>
+            <div id="swiper" class="side-menu">
+                <div>
+                    <img src="./Media/checkmark-circle-outline.svg" />
+                    <p>Close</p>
+                </div>
+
+                <div>
+                    <img src="./Media/arrow-forward-outline.svg" />
+                    <p>Reassign</p>
+                </div>
+                <div>
+                    <img src="./Media/alarm-outline.svg" />
+                    <p>Missed</p>
+                </div>
+                <div>
+                    <img src="./Media/clipboard-outline.svg" />
+                    <p>Lease Inspection</p>
+                </div>
+            </div>
+        </span>
+        <span id="card2" class="card">
+            <div class="red"></div>
+            <div id="content" class="card-grid">
+        
+                <div id="actualCard" class="actual-card">
+                    <div>
+                        <p class="visit-type">Maintenance Support</p>
+                        <p class="assigned-text">Queue -Adam Jarmin</p>
+                        <h1>Anderson East West Pad</h1>
+                    </div>
+        
+                </div>
+        
+                <div class="time-icon-tray">
+                    <p>8:30am</p>
+                    <img src="./Media/alert-circle.svg" />
+                    <img src="./Media/clipboard.svg" />
+                </div>
+            </div>
+            <div id="swiper" class="side-menu">
+                <div>
+                    <img src="./Media/checkmark-circle-outline.svg" />
+                    <p>Close</p>
+                </div>
+        
+                <div>
+                    <img src="./Media/arrow-forward-outline.svg" />
+                    <p>Reassign</p>
+                </div>
+                <div>
+                    <img src="./Media/alarm-outline.svg" />
+                    <p>Missed</p>
+                </div>
+                <div>
+                    <img src="./Media/clipboard-outline.svg" />
+                    <p>Lease Inspection</p>
+                </div>
+            </div>
+        </span>
+        <span id="card3" class="card">
+            <div class="red"></div>
+            <div id="content" class="card-grid">
+        
+                <div id="actualCard" class="actual-card">
+                    <div>
+                        <p class="visit-type">Maintenance Support</p>
+                        <p class="assigned-text">Queue -Adam Jarmin</p>
+                        <h1>Anderson East West Pad</h1>
+                    </div>
+        
+                </div>
+        
+                <div class="time-icon-tray">
+                    <p>8:30am</p>
+                    <img src="./Media/alert-circle.svg" />
+                    <img src="./Media/clipboard.svg" />
+                </div>
+            </div>
+            <div id="swiper" class="side-menu">
+                <div>
+                    <img src="./Media/checkmark-circle-outline.svg" />
+                    <p>Close</p>
+                </div>
+        
+                <div>
+                    <img src="./Media/arrow-forward-outline.svg" />
+                    <p>Reassign</p>
+                </div>
+                <div>
+                    <img src="./Media/alarm-outline.svg" />
+                    <p>Missed</p>
+                </div>
+                <div>
+                    <img src="./Media/clipboard-outline.svg" />
+                    <p>Lease Inspection</p>
+                </div>
+            </div>
+        </span>
+        <span id="card4" class="card">
+            <div class="red"></div>
+            <div id="content" class="card-grid">
+        
+                <div id="actualCard" class="actual-card">
+                    <div>
+                        <p class="visit-type">Maintenance Support</p>
+                        <p class="assigned-text">Queue -Adam Jarmin</p>
+                        <h1>Anderson East West Pad Really Long Name By Chance</h1>
+                    </div>
+        
+                </div>
+        
+                <div class="time-icon-tray">
+                    <p>8:30am</p>
+                    <img src="./Media/alert-circle.svg" />
+                    <img src="./Media/clipboard.svg" />
+                </div>
+            </div>
+            <div id="swiper" class="side-menu">
+                <div>
+                    <img src="./Media/checkmark-circle-outline.svg" />
+                    <p>Close</p>
+                </div>
+        
+                <div>
+                    <img src="./Media/arrow-forward-outline.svg" />
+                    <p>Reassign</p>
+                </div>
+                <div>
+                    <img src="./Media/alarm-outline.svg" />
+                    <p>Missed</p>
+                </div>
+                <div>
+                    <img src="./Media/clipboard-outline.svg" />
+                    <p>Lease Inspection</p>
+                </div>
+            </div>
+        </span>
+        <span id="card5" class="card">
+            <div class="red"></div>
+            <div id="content" class="card-grid">
+        
+                <div id="actualCard" class="actual-card">
+                    <div>
+                        <p class="visit-type">Maintenance Support</p>
+                        <p class="assigned-text">Queue -Adam Jarmin</p>
+                        <h1>Anderson East West Pad Really Long Name By Chance</h1>
+                    </div>
+        
+                </div>
+        
+                <div class="time-icon-tray">
+                    <p>8:30am</p>
+                    <img src="./Media/alert-circle.svg" />
+                    <img src="./Media/clipboard.svg" />
+                </div>
+            </div>
+            <div id="swiper" class="side-menu">
+                <div>
+                    <img src="./Media/checkmark-circle-outline.svg" />
+                    <p>Close</p>
+                </div>
+        
+                <div>
+                    <img src="./Media/arrow-forward-outline.svg" />
+                    <p>Reassign</p>
+                </div>
+                <div>
+                    <img src="./Media/alarm-outline.svg" />
+                    <p>Missed</p>
+                </div>
+                <div>
+                    <img src="./Media/clipboard-outline.svg" />
+                    <p>Lease Inspection</p>
+                </div>
+            </div>
+        </span>
+
+    </div>
+    <!--End of BRB Cards-->
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example-getting-started').multiselect();
+        $('#foremanGroup').multiselect();
+        $('#resourceGroup').multiselect();
+        $('#jobType').multiselect();
+        $('#status').multiselect();
+    });
+</script>
+<script>
+    window.addEventListener('load', function (e) {
+        var swiper = document.getElementById('swiper');
+        var card = document.getElementById('card');
+        var content = document.getElementById('content');
+        var filterCloseEvent = document.getElementsByClassName("filter-close");
+        var filterText = document.getElementById('filter-text');
+        var chevronUp = document.getElementById('chevron-up');
+        var chevronDown = document.getElementById('chevron-down');
+        var filterEvent = document.getElementById('filterEvent');
+        $('.chevronUp').hide();
+        $('.filter-open').hide();
+        card.addEventListener('touchstart', handleTouchStart, false);
+        card.addEventListener('touchmove', handleTouchMove, false);
+        filterEvent.addEventListener('click', toggleMenu, false);
+        filterText.innerHTML == "Filter"
+
+        var xDown = null;
+        var yDown = null;
+        filter - open
+
+        function toggleMenu(e) {
+
+            if (filterText.innerHTML == "Filter") {
+                filterText.innerHTML = "CURRENT VIEW";
+                $('.chevronUp').show();
+                $('.chevronDown').hide();
+                $('.filter-open').show();
+
+
+            } else {
+                filterText.innerHTML = "Filter";
+                $('.chevronDown').show();
+                $('.chevronUp').hide();
+                $('.filter-open').hide();
+            }
+
+        };
+
+        function getTouches(evt) {
+            return evt.touches ||             // browser API
+                evt.originalEvent.touches; // jQuery
+        }
+
+        function handleTouchStart(evt) {
+
+            const firstTouch = getTouches(evt)[0];
+            xDown = firstTouch.clientX;
+            yDown = firstTouch.clientY;
+        };
+
+        function handleTouchMove(evt) {
+            let span = evt.target.closest('span');
+
+            if (!xDown || !yDown) {
+                return;
+            }
+
+            var xUp = evt.touches[0].clientX;
+            var yUp = evt.touches[0].clientY;
+
+            var xDiff = xDown - xUp;
+            var yDiff = yDown - yUp;
+
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+                if (xDiff > 0) {
+                    $("#" + span.id + "> #swiper ").removeClass("side-menu-swiped-left");
+                    $("#" + span.id + "> #content ").removeClass("display-none");
+
+                } else {
+
+                    $("#" + span.id + " > #content ").addClass("display-none");
+                    $("#" + span.id + " > #swiper ").addClass("side-menu-swiped-left");
+
+                }
+            } else {
+                if (yDiff > 0) {
+                    gesuredZone.innerHTML = "swiped up";
+
+                } else {
+                    gesuredZone.innerHTML = "swiped down";
+
+                }
+            }
+            /* reset values */
+            xDown = null;
+            yDown = null;
+        };
+
+    }, false) // end window.onload
+</script>
+
+
+</html>

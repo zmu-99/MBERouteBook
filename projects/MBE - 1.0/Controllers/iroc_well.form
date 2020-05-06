@@ -1,0 +1,22 @@
+﻿<EntityForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:dummy="0" flexi="0" fleximode="1" fullscreen="0" resize="0" version="2">
+  <IsContactForm>false</IsContactForm>
+  <EntityName>iroc_well</EntityName>
+  <CamelCase>iroc_well</CamelCase>
+  <PrimaryCommands>!defcmd</PrimaryCommands>
+  <EnabledWorkflows>OnLoadEnabled OnChangeEnabled OnSaveEnabled OnExecuteCommand OnCanExecuteCommand OnExecuteButton</EnabledWorkflows>
+  <SerializedChildrenV2>
+    <FormTab xsi:type="DetailTab">
+      <Name>General</Name>
+      <SerializedChildren>
+        <DetailItem SchemaName="iroc_name"/>
+        <DetailItem SchemaName="iroc_producingmethod"/>
+        <DetailItem SchemaName="iroc_oilproduction7dayavg"/>
+        <DetailItem SchemaName="iroc_oilproduction7dayavgadj"/>
+      </SerializedChildren>
+    </FormTab>
+    <FormTab xsi:type="MapTab">
+      <Name>Location</Name>
+      <CoordinatesBinding>iroc_latitude;iroc_longitude</CoordinatesBinding>
+    </FormTab>
+  </SerializedChildrenV2>
+</EntityForm>

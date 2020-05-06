@@ -1,0 +1,87 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_routefeed</EntityName>
+    <CamelCase>iroc_RouteFeed</CamelCase>
+  </Attributes>
+  <Name>Active Route Feeds - Copy</Name>
+  <Kind>List</Kind>
+  <IsDefault>true</IsDefault>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>iroc_activity</string>
+    <string>iroc_activitytype</string>
+    <string>iroc_bookingid</string>
+    <string>createdby</string>
+    <string>createdon</string>
+    <string>iroc_equipment</string>
+    <string>iroc_isonline</string>
+    <string>iroc_padid</string>
+    <string>iroc_name</string>
+    <string>iroc_routefeedid</string>
+    <string>iroc_timespent</string>
+    <string>iroc_visittype</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="iroc_routefeed">
+      <filter type="and">
+        <condition attribute="createdon" operator="last-x-days" value="25"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>120</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_activity">
+          <StyleName>black</StyleName>
+          <Bounds>8,66,302,46</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>large10</StyleName>
+          <Bounds>52,3,248,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdby">
+          <StyleName>gray_bold</StyleName>
+          <Bounds>54,30,145,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdon">
+          <StyleName>time_only</StyleName>
+          <Bounds>199,30,73,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdon">
+          <StyleName>Month:Day</StyleName>
+          <Bounds>3,3,44,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdon">
+          <StyleName>Date #</StyleName>
+          <Bounds>4,30,43,21</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="at">
+          <IsConstant>true</IsConstant>
+          <StyleName>gray_bold</StyleName>
+          <Bounds>170,30,16,22</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Lease Inspection</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="VehicleInspectionsbyFG.js"></script>
+    <script type="text/javascript" src="../Telemetry.js"></script>
+    <link rel="stylesheet" type="text/css" href="../irocStyles.css" />
+    <link rel="stylesheet" type="text/css" href="../irocSlider_LI.css" />
+    <!--<link rel="stylesheet" type="text/css" href="font-awesome.min.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="jquery.easy-pie-chart.css" />-->
+   <!-- <link rel="stylesheet" type="text/css" href="style.css" />-->
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 75px;
+            height: 75px;
+            margin: -75px 0 0 -75px;
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #007079;
+            width: 75px;
+            height: 75px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="display:flex; justify-content:space-between;">
+        <label class="switch">
+            <input type="checkbox" id="toggleCheck">
+            <span id="lbl" class="slider round">Not Completed</span>
+        </label>
+        <label class="irocTitle">
+            <span class="irocTitle irocLeaseSelectionList">
+                <select class="irocSelectionList" id="foremangroupfilter" onchange="FS.VIBoard.onchange()"></select>
+            </span>
+        </label>
+    </div>
+    <main role="main">
+        <div id="loader"></div>
+        <div id="optionset">
+            <table>
+                <tr id="records">
+                    <td></td>
+                    <tr></tr>
+                    <td class="irocLI_SubTitle"><span class="counter"></span></td>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div id="lilist">
+            <table id="litablelist" class='table table-hover irocMainTable'><th class="litable"></th></table>
+        </div>
+        <div id="noRecords">
+            <p class="irocTitle"> NO RECORDS FOR SELECTED FILTER</p>
+        </div>
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            FS.VIBoard.setClick();
+            FS.VIBoard.onloadFunction();
+            FS.VIBoard.LeaseInspectionSetGlobalEvent();
+
+        });
+    </script>
+</body>
+</html>

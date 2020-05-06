@@ -1,0 +1,34 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_timespent</EntityName>
+    <CamelCase>iroc_timespent</CamelCase>
+  </Attributes>
+  <Name>Sorted by least time</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_timeexpendedkey</OrderBy>
+  <SerializedBindings>
+    <string>iroc_timeexpendedkey</string>
+    <string>iroc_time_expended_long_form</string>
+    <string>iroc_time_expended_short_form</string>
+    <string>iroc_timespentid</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_time_expended_long_form">
+          <StyleName>primary</StyleName>
+          <Bounds>10,5,302,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

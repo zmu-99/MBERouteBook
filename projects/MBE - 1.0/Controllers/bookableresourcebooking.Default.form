@@ -1,0 +1,154 @@
+﻿<EntityForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:dummy="0" flexi="0" fleximode="1" fullscreen="0" resize="0" version="2">
+  <IsContactForm>false</IsContactForm>
+  <EntityName>bookableresourcebooking</EntityName>
+  <CamelCase>BookableResourceBooking</CamelCase>
+  <WorkflowLoad>&lt;?xml version="1.0" ?&gt;&lt;Workflow e="true" isvalid="true" syntaxVersion="11" version="0"&gt;&lt;function e="false"&gt;&lt;var&gt;IsFormEditable&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;Boolean:False&lt;/arg&gt;&lt;/function&gt;&lt;function e="false"&gt;&lt;var&gt;Form.starttime.IsVisible&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;Boolean:True&lt;/arg&gt;&lt;/function&gt;&lt;function e="false"&gt;&lt;var&gt;Form.iroc_missedreason.IsEnabled&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;Boolean:True&lt;/arg&gt;&lt;/function&gt;&lt;/Workflow&gt;</WorkflowLoad>
+  <WorkflowItemChanged>&lt;?xml version="1.0" ?&gt;&lt;Workflow e="true" isvalid="true" syntaxVersion="11" version="0"&gt;&lt;branch e="true" info="" &gt;&lt;if e="true"&gt;&lt;conditions e="true" op="And"&gt;&lt;condition e="false"&gt;&lt;var&gt;Entity.iroc_padid&lt;/var&gt;&lt;op&gt;ContainsData&lt;/op&gt;&lt;/condition&gt;&lt;condition e="false"&gt;&lt;var&gt;Entity.iroc_padid&lt;/var&gt;&lt;op&gt;TypeOf&lt;/op&gt;&lt;arg&gt;String:account&lt;/arg&gt;&lt;/condition&gt;&lt;condition e="false"&gt;&lt;var&gt;ChangedItem&lt;/var&gt;&lt;op&gt;Equal&lt;/op&gt;&lt;arg&gt;String:iroc_padid&lt;/arg&gt;&lt;/condition&gt;&lt;/conditions&gt;&lt;action&gt;&lt;function e="false"&gt;&lt;var&gt;Shared.parent.@this&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;var:Entity.iroc_padid&lt;/arg&gt;&lt;/function&gt;&lt;/action&gt;&lt;/if&gt;&lt;/branch&gt;&lt;branch e="true" info="" &gt;&lt;if e="true"&gt;&lt;conditions e="true" op="And"&gt;&lt;condition e="false"&gt;&lt;var&gt;Entity.bookingstatus&lt;/var&gt;&lt;op&gt;NotEqual&lt;/op&gt;&lt;arg&gt;Lookup:bookingstatus,e120ca3b-614f-ea11-a812-000d3a652777,Missed&lt;/arg&gt;&lt;/condition&gt;&lt;/conditions&gt;&lt;action&gt;&lt;function e="false"&gt;&lt;var&gt;Form.iroc_missedreason.IsVisible&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;Boolean:False&lt;/arg&gt;&lt;/function&gt;&lt;/action&gt;&lt;/if&gt;&lt;if e="true"&gt;&lt;conditions e="true" op="And"&gt;&lt;/conditions&gt;&lt;action&gt;&lt;function e="false"&gt;&lt;var&gt;Form.iroc_missedreason.IsVisible&lt;/var&gt;&lt;func&gt;Assign&lt;/func&gt;&lt;arg&gt;Boolean:True&lt;/arg&gt;&lt;/function&gt;&lt;/action&gt;&lt;/if&gt;&lt;/branch&gt;&lt;/Workflow&gt;</WorkflowItemChanged>
+  <WorkflowSave>&lt;Workflow e="true" isvalid="true" syntaxVersion="7" version="0"&gt;
+  &lt;branch info="Set name to work order number" e="true"&gt;
+    &lt;if e="true"&gt;
+      &lt;conditions e="true" op="And"&gt;
+        &lt;condition e="false"&gt;
+          &lt;var&gt;Entity.msdyn_workorder&lt;/var&gt;
+          &lt;op&gt;ContainsData&lt;/op&gt;
+        &lt;/condition&gt;
+        &lt;condition e="false"&gt;
+          &lt;var&gt;Entity.name&lt;/var&gt;
+          &lt;op&gt;DoesNotContainData&lt;/op&gt;
+        &lt;/condition&gt;
+      &lt;/conditions&gt;
+      &lt;action e="true"&gt;
+        &lt;definition e="false"&gt;
+          &lt;var&gt;workOrder&lt;/var&gt;
+          &lt;arg&gt;var:Entity.msdyn_workorder&lt;/arg&gt;
+          &lt;arg&gt;String:msdyn_workorder&lt;/arg&gt;
+          &lt;func&gt;LoadReference&lt;/func&gt;
+          &lt;type&gt;Entity&lt;/type&gt;
+        &lt;/definition&gt;
+        &lt;branch info="If the Work Order has a name, set the Booking name to the name of the Work Order" e="true"&gt;
+          &lt;if e="true"&gt;
+            &lt;conditions e="true" op="And"&gt;
+              &lt;condition e="true"&gt;
+                &lt;var&gt;workOrder.@this&lt;/var&gt;
+                &lt;op&gt;ContainsData&lt;/op&gt;
+              &lt;/condition&gt;
+              &lt;condition e="false"&gt;
+                &lt;var&gt;workOrder.msdyn_name&lt;/var&gt;
+                &lt;op&gt;ContainsData&lt;/op&gt;
+              &lt;/condition&gt;
+            &lt;/conditions&gt;
+            &lt;action e="true"&gt;
+              &lt;function e="false"&gt;
+                &lt;var&gt;Entity.name&lt;/var&gt;
+                &lt;arg&gt;var:Entity.msdyn_workorder&lt;/arg&gt;
+                &lt;func&gt;Assign&lt;/func&gt;
+              &lt;/function&gt;
+            &lt;/action&gt;
+          &lt;/if&gt;
+        &lt;/branch&gt;
+      &lt;/action&gt;
+    &lt;/if&gt;
+  &lt;/branch&gt;
+&lt;/Workflow&gt;</WorkflowSave>
+  <WorkflowCommandCanExecute>&lt;Workflow e="false" isvalid="true" syntaxVersion="11" version="0"&gt;
+      &lt;branch info="Command Can Execute" e="true"&gt;
+          &lt;if e="true"&gt;
+              &lt;conditions e="true" op="And"&gt;
+                  &lt;group e="false" op="And"&gt;
+                      &lt;condition e="false"&gt;
+                          &lt;var&gt;Command.Name&lt;/var&gt;
+                          &lt;arg&gt;String:custom_FollowUp&lt;/arg&gt;
+                          &lt;op&gt;Equal&lt;/op&gt;
+                      &lt;/condition&gt;
+                      &lt;condition e="false"&gt;
+                          &lt;var&gt;Entity.msdyn_workorder&lt;/var&gt;
+                          &lt;op&gt;DoesNotContainData&lt;/op&gt;
+                      &lt;/condition&gt;
+                  &lt;/group&gt;
+              &lt;/conditions&gt;
+              &lt;action e="true"&gt;
+                  &lt;function e="false"&gt;
+                      &lt;var&gt;Command.IsEnabled&lt;/var&gt;
+                      &lt;arg&gt;Boolean:False&lt;/arg&gt;
+                      &lt;func&gt;Assign&lt;/func&gt;
+                  &lt;/function&gt;
+              &lt;/action&gt;
+          &lt;/if&gt;
+      &lt;/branch&gt;
+  &lt;/Workflow&gt;</WorkflowCommandCanExecute>
+  <SharedVariables>&lt;SharedVariables&gt;&lt;Variables&gt;&lt;SharedVariable usage="OnChangeEnabled"&gt;&lt;Name&gt;parent&lt;/Name&gt;&lt;CrmType&gt;Entity&lt;/CrmType&gt;&lt;InnerType&gt;account&lt;/InnerType&gt;&lt;/SharedVariable&gt;&lt;/Variables&gt;&lt;/SharedVariables&gt;</SharedVariables>
+  <PrimaryCommands>custom_FollowUp|Cmd.RunFollowUp||custom_RemoteAssist|Cmd.RemoteAssist|</PrimaryCommands>
+  <SharedVariableNames>
+    <string>parent.accountid</string>
+    <string>parent.address1_addresstypecode</string>
+    <string>parent.address1_city</string>
+    <string>parent.address1_country</string>
+    <string>parent.address1_county</string>
+    <string>parent.address1_fax</string>
+    <string>parent.address1_latitude</string>
+    <string>parent.address1_line1</string>
+    <string>parent.address1_line2</string>
+    <string>parent.address1_line3</string>
+    <string>parent.address1_longitude</string>
+    <string>parent.address1_name</string>
+    <string>parent.address1_postalcode</string>
+    <string>parent.address1_stateorprovince</string>
+    <string>parent.address1_telephone2</string>
+    <string>parent.createdon</string>
+    <string>parent.emailaddress1</string>
+    <string>parent.iroc_areaid</string>
+    <string>parent.iroc_equinorglobalid</string>
+    <string>parent.iroc_foremangroup</string>
+    <string>parent.iroc_generatebookingdate</string>
+    <string>parent.iroc_irocpadidentfier</string>
+    <string>parent.iroc_lastleaseinspectiondate</string>
+    <string>parent.iroc_lastschedulevisitcompletedate</string>
+    <string>parent.iroc_oilproduction7dayavg</string>
+    <string>parent.iroc_oilproduction7dayavgadj</string>
+    <string>parent.iroc_producingmethod</string>
+    <string>parent.iroc_serviceitemtype</string>
+    <string>parent.iroc_tierid</string>
+    <string>parent.modifiedon</string>
+    <string>parent.name</string>
+    <string>parent.ownerid</string>
+    <string>parent.statuscode</string>
+    <string>parent.telephone1</string>
+  </SharedVariableNames>
+  <ClassBinding>
+    <SerializedClassBinding name="#WorkOrder" label="WorkOrder" type="String"/>
+  </ClassBinding>
+  <EnabledWorkflows>OnLoadEnabled OnChangeEnabled OnSaveEnabled OnExecuteCommand OnCanExecuteCommand</EnabledWorkflows>
+  <SerializedChildrenV2>
+    <FormTab xsi:type="DetailTab">
+      <Name>Booking</Name>
+      <SerializedChildren>
+        <DetailItem SchemaName="name"/>
+        <DetailItem SchemaName="starttime"/>
+        <DetailItem SchemaName="bookingstatus">
+          <LookupViews>bookingstatus.*:bookingstatus.@Booking Statuses</LookupViews>
+        </DetailItem>
+        <DetailItem SchemaName="iroc_missedreason"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="resource"/>
+        <DetailItem SchemaName="iroc_timespentlong"/>
+        <DetailItem SchemaName="iroc_isinspectionrequired"/>
+        <DetailItem SchemaName="iroc_leaseinspectionid"/>
+        <DetailItem SchemaName="parent.iroc_oilproduction7dayavg"/>
+        <DetailItem SchemaName="parent.iroc_oilproduction7dayavgadj"/>
+        <DetailItem SchemaName="iroc_padid"/>
+      </SerializedChildren>
+    </FormTab>
+    <FormTab xsi:type="AssociatedTab">
+      <Name>Route Feeds List</Name>
+      <Binding SchemaName="iroc_routefeed.iroc_bookingid"/>
+    </FormTab>
+    <FormTab xsi:type="AssociatedTab" DocCommands="0">
+      <Name>Lease Inspections</Name>
+      <CustomName>Lease Inspections</CustomName>
+      <Binding SchemaName="iroc_leaseinspection.@virtual"/>
+      <Views>iroc_leaseinspection.Default</Views>
+    </FormTab>
+  </SerializedChildrenV2>
+</EntityForm>

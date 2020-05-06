@@ -1,0 +1,155 @@
+﻿.irocMonth {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #007079;
+    font-size: 16px;
+    font-weight: normal;
+    vertical-align: middle;
+    text-align: center;
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 15px;
+    border-right: 2px groove #007079;
+    border-bottom: 1px solid #007079 !important;
+}
+
+.irocNotificationMonth {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #666666;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: top;
+    text-align: center;
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 15px;
+    border-bottom: 1px solid #666666 !important;
+}
+
+.irocNotificationMonthRed {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #FF1243;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: top;
+    text-align: center;
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 15px;
+    border-bottom: 1px solid #666666 !important;
+}
+
+.irocIcon {
+    vertical-align: bottom;
+    width: 1%;
+    white-space: nowrap;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 12px;
+    font-weight: normal;
+    vertical-align: top;
+}
+.irocIconTop {
+    vertical-align: bottom;
+    width: 1%;
+    white-space: nowrap;
+    border-top: 1px solid #007079 !important;
+}
+.irocIconBottom {
+    vertical-align: top;
+    width: 1%;
+    white-space: nowrap;
+    border-bottom: 1px solid #007079 !important;
+}
+.irocTitle {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #007079 !important;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: top;
+    /*white-space: nowrap;*/
+}
+
+.irocLI_SubTitle {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #999999 !important;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: top;
+    /*white-space: nowrap;*/
+}
+
+.irocLI_Title {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #666666 !important;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: top;
+    /*white-space: nowrap;*/
+}
+
+.irocTitleRed {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #FF1243 !important;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: top;
+    /*white-space: nowrap;*/
+}
+
+.irocBody {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: black;
+    font-size: 14px;
+    font-weight: normal;
+    vertical-align: top;
+    padding-bottom: 3px;
+   
+}
+.irocRouteSeperator {
+    padding-bottom: 6px;
+    border-bottom: 5px solid #007079 !important;
+}
+.irocTableLastRow {
+    padding-bottom: 6px;
+    border-bottom: 1px solid black !important;
+}
+
+.irocLITableLastRow {
+    color: #007079 !important;
+    padding-bottom: 2px;
+    border-bottom: 1px solid black !important;
+}
+.irocMainTable {
+    border-top: 1px solid black !important;
+    width: 100%;
+}
+.irocNotificationMainTable {
+    border-top: 1px solid black !important;
+    width: 100%;
+}
+.irocSelectLabel {
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #007079 !important;
+    font-size: 18px;
+    font-weight: bold;
+    vertical-align: middle;
+    /*white-space: nowrap;*/
+}
+.irocSelectionList {
+    min-height: 26px;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #007079;
+    font-size: 22px;
+}
+.irocLeaseSelectionList {
+    min-height: 26px;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    color: #007079;
+    font-size: 22px;
+}
+table {
+    /*border: 1px solid black;*/
+    width: 100%;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+}
+

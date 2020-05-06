@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <style>
+    </style>
+</head>
+
+<body onload="onBodyLoaded()">
+	<script>
+
+        // startup
+		function onBodyLoaded() {
+            MobileCRM.UI.HomeForm.hideUIReplacement(); //keep default form and hide my html only run scripts
+            updateHomeItems();
+            registerGlobalEvents();
+        }
+
+        // password check need to verify user has save password otherwise there is a chance for data to be corrupted
+        function checkPassword() {
+            MobileCRM.Configuration.requestObject(function (config) {
+                /// <param name="config" type="MobileCRM.Configuration"/>
+                if (config.settings.canUsePassword) //if we can use password
+                    updateHomeItems(config.settings.lastSyncDate);  //look at last sync date to determine wheter anything needs updating
+                else
+                    setTimeout(checkPassword, 1000);
+            }, MobileCRM.bridge.alert);
+        }
+
+        // update safetty notifcation menu with count by using last sync we are grabbing safte entity last modified on and comparing with our sync date
+        function updateHomeItems(){
+
+            var entity = new MobileCRM.FetchXml.Entity("iroc_safetynotification");
+
+            var attr = entity.addAttribute("iroc_safetynotificationid");
+            attr.aggregate = "count";
+            attr.alias = "count_safetynotificationid";
+            attr.groupby = false;
+
+            entity.filter = new MobileCRM.FetchXml.Filter();
+            entity.filter.where("iroc_safetynotifcationstatus", "eq", 929530000); //only grabbing records where it greater than or equal to our last sync date
+            
+            var fetch = new MobileCRM.FetchXml.Fetch(entity);
+            fetch.aggregate = true;
+            fetch.execute("Array", function (res) {
+var items = ['@@Safety Flash;file://MBENotifications/MyNotifications.html'];
+                if (res && res.length > 0) {
+MobileCRM.UI.HomeForm.updateHomeItemAsync(items, null, null, res[0][0], MobileCRM.bridge.alert);
+                }
+            }, MobileCRM.bridge.alert, null);            
+        }
+
+        // register on global events
+        function registerGlobalEvents() {
+
+            MobileCRM.bridge.onGlobalEvent("EntityFormClosed", function (closedEntityForm) {
+                /// <param name='closedEntityForm' type='MobileCRM.UI.EntityForm'>An EntityForm object representing the form that was closed.</param>
+                if (closedEntityForm.entity.entityName == "iroc_safetynotification")
+                    updateHomeItems();
+            }, true);
+
+            MobileCRM.bridge.onGlobalEvent("SyncFinished", function () {
+                updateHomeItems();
+            }, true);
+
+        }
+
+	</script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,40 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>account</EntityName>
+    <CamelCase>account</CamelCase>
+  </Attributes>
+  <Name>VisitOwner</Name>
+  <Kind>LookupList</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>name</OrderBy>
+  <SerializedBindings>
+    <string>ownerid</string>
+    <string>accountid</string>
+  </SerializedBindings>
+  <IsHidden>true</IsHidden>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="account">
+      <filter type="and">
+        <condition attribute="accountid" operator="eq" value="{{iroc_padid}}"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="ownerid">
+          <StyleName>primary</StyleName>
+          <Bounds>21,13,245,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

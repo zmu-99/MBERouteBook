@@ -1,0 +1,100 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_leaseinspection</EntityName>
+    <CamelCase>iroc_leaseinspection</CamelCase>
+  </Attributes>
+  <Name>Foreman - Adam Lease Inspection </Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>iroc_completedby</string>
+    <string>iroc_inspectionplannedfordate</string>
+    <string>iroc_leaseinspectionid</string>
+    <string>iroc_name</string>
+    <string>iroc_leaseinspectionstatus</string>
+    <string>iroc_padid</string>
+    <string>iroc_padid.account.ownerid</string>
+    <string>iroc_padid.account.ownerid.systemuser.fullname</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="iroc_leaseinspection">
+      <link-entity name="account" alias="L0" from="accountid" to="iroc_padid" link-type="inner">
+        <filter type="and">
+          <condition attribute="iroc_foremangroup" operator="eq" value="929530000"/>
+        </filter>
+      </link-entity>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>151</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_inspectionplannedfordate">
+          <StyleName>primary</StyleName>
+          <Bounds>12,66,269,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_leaseinspectionstatus">
+          <StyleName>primary</StyleName>
+          <Bounds>13,36,270,26</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>primary</StyleName>
+          <Bounds>13,5,269,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_completedby">
+          <StyleName>primary</StyleName>
+          <Bounds>12,102,270,26</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Row2</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren/>
+    </RowTemplate>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default-Copy</Name>
+      <Width>320</Width>
+      <Height>151</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_inspectionplannedfordate">
+          <StyleName>primary</StyleName>
+          <Bounds>39,47,269,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_leaseinspectionstatus">
+          <StyleName>primary</StyleName>
+          <Bounds>40,79,268,26</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>primary</StyleName>
+          <Bounds>39,13,269,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

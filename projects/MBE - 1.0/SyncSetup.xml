@@ -1,0 +1,19 @@
+﻿<SESetup Version='1'>
+	<SyncDownloaderSetup>
+		<Setup Platform='Desktop WinRT WinUWP' DownloadCacheSize='1000'>
+			<Entities>
+				<Entity Name='bookableresourcebooking' DownloadPageSize='2000' HasPriority='true' />
+			</Entities>
+		</Setup>
+		<Setup Platform='Mobiles' OnlyHighEndDevices='true'>
+			<Entities>
+				<Entity Name='bookableresourcebooking' DownloadPageSize='2000' HasPriority='true' />
+			</Entities>
+		</Setup>
+		<Setup Platform='Desktop' DownloadCacheSize='1000' NumDownloadThreads='5'>
+			<Entities>
+				<Entity Name='bookableresourcebooking' DownloadPageSize='4000' HasPriority='true' />
+			</Entities>
+		</Setup>
+	</SyncDownloaderSetup>
+</SESetup>

@@ -1,0 +1,57 @@
+﻿<EntityForm xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:dummy="0" flexi="0" fleximode="1" fullscreen="0" resize="0" version="2">
+  <IsContactForm>false</IsContactForm>
+  <EntityName>iroc_maintenancenotification</EntityName>
+  <CamelCase>iroc_maintenancenotification</CamelCase>
+  <PrimaryCommands>!defcmd</PrimaryCommands>
+  <EnabledWorkflows>OnLoadEnabled OnChangeEnabled OnSaveEnabled OnExecuteCommand OnCanExecuteCommand OnExecuteButton</EnabledWorkflows>
+  <SerializedChildrenV2>
+    <FormTab xsi:type="DetailTab">
+      <Name>Notification</Name>
+      <SerializedChildren>
+        <DetailItem SchemaName="iroc_sapnotificationid"/>
+        <DetailItem SchemaName="statecode"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="iroc_functionallocationid"/>
+        <DetailItem SchemaName="iroc_equipmentid"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="iroc_plannergroup"/>
+        <DetailItem SchemaName="iroc_mainworkcenter"/>
+        <DetailItem SchemaName="iroc_reportedby"/>
+        <DetailItem SchemaName="iroc_notificationdate"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="iroc_failureimpactid"/>
+        <DetailItem separator="true" xsi:type="SeparatorDetailItem">
+          <IsConstant>true</IsConstant>
+        </DetailItem>
+        <DetailItem SchemaName="iroc_detectionmethodcode"/>
+        <DetailItem SchemaName="iroc_failuremodecode"/>
+        <DetailItem SchemaName="iroc_failuremodecodetext"/>
+        <DetailItem SchemaName="iroc_failuremechanismcode"/>
+      </SerializedChildren>
+    </FormTab>
+    <FormTab xsi:type="DetailTab">
+      <Name>Documents</Name>
+      <SerializedChildren>
+        <DetailItem SchemaName="iroc_catatogprofileid"/>
+      </SerializedChildren>
+    </FormTab>
+    <FormTab xsi:type="DetailTab">
+      <Name>Location Data</Name>
+      <SerializedChildren/>
+    </FormTab>
+    <FormTab xsi:type="DetailTab">
+      <Name>Dates</Name>
+      <SerializedChildren/>
+    </FormTab>
+    <FormTab xsi:type="DetailTab">
+      <Name>Activities</Name>
+      <SerializedChildren/>
+    </FormTab>
+  </SerializedChildrenV2>
+</EntityForm>

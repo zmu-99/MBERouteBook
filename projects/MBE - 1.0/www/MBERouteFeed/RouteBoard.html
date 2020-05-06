@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>RouteBoard</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="popper.min.js"></script>
+
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap-multiselect.css" />
+    <script type="text/javascript" src="bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="../Schema.js"></script>
+    <script type="text/javascript" src="../Common.js"></script>
+    <script type="text/javascript" src="../Enums.js"></script>
+    <script type="text/javascript" src="RouteBoard.js"></script>
+    <script type="text/javascript" src="../Telemetry.js"></script>
+    <link rel="stylesheet" type="text/css" href="../irocStyles.css" />
+    <link rel="stylesheet" type="text/css" href="../irocSliderRB.css" />
+    <!--<link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.easy-pie-chart.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />-->
+    <style>
+        /* Center the loader */
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 75px;
+            height: 75px;
+            margin: -75px 0 0 -75px;
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #007079;
+            width: 75px;
+            height: 75px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /*#foremangroupfilter li.multiselect-selected a label {
+            color: #007079;
+            font-family: Calibri, Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .btn-small {
+            padding: 2px 5px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            font-family: Calibri, Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toggleSwitch" style="width: 100%;">
+        <table style="width: 100%;">
+            <tr>
+                <td>
+                    <label style="text-align:left;" class="switch">
+                        <input type="checkbox" id="toggleCheck">
+                        <span id="lbl" class="slider round">Scheduled</span>
+                    </label>
+                </td>
+                <td style="text-align:center;" class="irocTitle"><img id="safetyicon" style="height:40px"
+                        src="safetyflash.svg" alt="Safety Flash" onclick="FS.RouteBoard.onClickSafety()" /></td>
+
+                <td style="text-align:right;  vertical-align: middle !important;" class="irocBody">New Job<img
+                        onclick='FS.RouteBoard.createNewJob()' style="height:40px" src="plus.svg" alt="Add New" /></td>
+            </tr>
+        </table>
+    </div>
+    <main role="main">
+        <div id="loader"></div>
+        <!--<div id="uncollapsed"></div>-->
+
+        <div id="optionset">
+            <table>
+                <tr class="td1" id="uncollapsed" onclick='uncollapse()'>
+                    <td style="width: 75px;">&nbsp&nbsp&nbsp&nbsp</td>
+                    <td class="irocSelectLabel"><span class="counter"></span></td>
+                    <td style="text-align:left;" class"iroc"><img id="uncollapse" style="height:35px"
+                            src="uncolllapse.svg" alt="uncollapse" /></td>
+                </tr>
+                <!--<tr class="td2">
+                    <td style="width: 75px;">
+                        <button id="buttonscheduled" type='button' class='btn btn-default btn-small irocTitle' onclick='FS.RouteBoard.toggleFilterButtonScheduled()'>Scheduled</button>
+                        <button id="buttoncomplete" type='button' class='btn btn-default btn-small irocTitle' onclick='FS.RouteBoard.toggleFilterButtonComplete()'>Completed</button>
+                    </td>
+                    <td style="text-align:center;" class="irocTitle"><img id="safetyicon" style="height:35px" src="safetyflash.svg" alt="Safety Flash" onclick="FS.RouteBoard.onClickSafety()" /></td>
+                    <td style="text-align:right;" class="irocBody">New Job<img onclick='FS.RouteBoard.createNewJob()' style="height:35px" src="plus.svg" alt="Add New" /></td>
+                </tr>-->
+                <tr class="td2">
+                    <td style="width: 75px;" class="irocSelectLabel">Foreman:</td>
+                    <td>
+                        <select class="irocSelectionList" id="foremangroupfilter" multiple="multiple"></select>
+                    </td>
+                    <td style="text-align:left" class="irocTitle"><img id="refresh" onclick='FS.RouteBoard.onRefresh()'
+                            style="height:35px" src="refresh.svg" alt="refresh" /></td>
+                </tr>
+                <tr class="td2">
+                    <td style="width: 75px;" class="irocSelectLabel">Resource:</td>
+                    <td colspan='2' class="irocTitle">
+                        <select class="irocSelectionList" id="resourcefilter" multiple="multiple"></select>
+                    </td>
+                </tr>
+                <tr class="td2">
+                    <td style="width: 75px;" class="irocSelectLabel">
+                        Job Type:
+                    </td>
+
+                    <td colspan='2' class="irocTitle">
+                        <select class="irocSelectionList" id="jobfilter" multiple="multiple"></select>
+                    </td>
+                </tr>
+                <tr class="td2">
+                    <td class="irocSelectLabel" style="width: 75px;">
+                        Date:
+                    </td>
+                    <td class="irocTitle">
+                        <input style="width: 175px;" id="datefilter" type="date"
+                            onchange="FS.RouteBoard.dateFilter('change',this); return false;">
+
+                    </td>
+                    <td></td>
+
+                </tr>
+                <tr class="td2" id="records" onclick='collapse()'>
+                    <td style="width: 75px;">&nbsp&nbsp&nbsp&nbsp</td>
+                    <td class="irocSelectLabel"><span class="counter"></span></td>
+                    <td style="text-align:left;" class"iroc"><img id="collapse" style="height:35px" src="collapse.svg"
+                            alt="collapse" /></td>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div id="brblist">
+            <table id="brbtablelist" class='irocMainTable'>
+                <th class="brbtable"></th>
+            </table>
+        </div>
+        <div id="noRecords">
+            <p class="irocTitle"> NO RECORDS FOR SELECTED FILTERS</p>
+        </div>
+        <div id="assign">
+            <div onclick="FS.RouteBoard.onClose()" style="text-align:left;" class="irocTitle">
+                Return/Cancel<img style="height:55px" src="return.svg" alt="Return/Cancel" />
+            </div>
+            <div class="irocSelectLabel">
+                <br /><br />Reassign this booking to:
+            </div>
+            <div class="irocSelectionList">
+                <select class="irocSelectionList" style="height: auto; width:auto;" id="assigntofilter">
+                    <option value=-1></option>
+                </select>
+            </div>
+            <div onclick='FS.RouteBoard.onAssign()' style="text-align:center;" class="irocTitle">
+                Save<img style="height:55px" src="save.svg" alt="Save" />
+            </div>
+            <div onclick="FS.RouteBoard.onClose()" style="text-align:left;" class="irocTitle">
+                <br /> <br />Return/Cancel<img style="height:55px" src="return.svg" alt="Return/Cancel" />
+            </div>
+
+            <div id="assignerror" class="irocTitleRed">
+                Must select resource to save.
+            </div>
+            <br />
+        </div>
+        <div id="reasons">
+            <table>
+                <tr onclick="FS.RouteBoard.onClose()">
+                    <td style="text-align:left;" class="irocTitle">Return/Cancel<img style="height:55px"
+                            src="return.svg" alt="Return/Cancel" /></td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="reason" class="irocSelectLabel"><br /><br />You have chosen to miss this visit,
+                            please select why:</label>
+                        <select class="irocSelectionList" style="height: auto; width:auto;" id="reason">
+                            <option value=-1></option>
+                        </select>
+                    </th>
+                </tr>
+                <tr onclick='FS.RouteBoard.onSave()'>
+                    <td style="text-align:center;" class="irocTitle">Save<img style="height:45px" src="save.svg"
+                            alt="Save" /></td>
+                </tr>
+                <tr onclick="FS.RouteBoard.onClose()">
+                    <td style="text-align:left;" class="irocTitle"><br /> <br />Return/Cancel<img style="height:55px"
+                            src="return.svg" alt="Return/Cancel" /></td>
+                </tr>
+                <tr>
+                    <td id="reasonerror" class="irocTitleRed">Must select reason to save.</td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.td1').hide();
+            $('.td2').show();
+            $("#noRecords").hide();
+            $("#reasonerror").hide();
+            $("#assignerror").hide();
+            FS.RouteBoard.setClick();
+            FS.RouteBoard.onloadFunction();
+            FS.RouteBoard.RouteFeedSetGlobalEvent();
+        });
+        function uncollapse() {
+            $('.td1').hide();
+            $('.td2').show();
+        }
+
+        function collapse() {
+            $('.td1').show();
+            $('.td2').hide();
+        }
+
+    </script>
+</body>
+
+</html>

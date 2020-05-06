@@ -1,0 +1,70 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_safetynotification</EntityName>
+    <CamelCase>iroc_SafetyNotification</CamelCase>
+  </Attributes>
+  <Name>Mike Filkowski - Active Safety Flash</Name>
+  <Kind>List</Kind>
+  <IsDefault>true</IsDefault>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>!iroc_expiresondate</OrderBy>
+  <SerializedBindings>
+    <string>iroc_category</string>
+    <string>createdby</string>
+    <string>createdon</string>
+    <string>iroc_details</string>
+    <string>iroc_expiresondate</string>
+    <string>iroc_safetynotificationid</string>
+    <string>iroc_title</string>
+  </SerializedBindings>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="iroc_safetynotification">
+      <filter type="and">
+        <condition attribute="iroc_safetynotifcationstatus" operator="eq" value="929530000"/>
+        <condition attribute="iroc_foremangroups" operator="eq" value="929530006"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>240</DesignWidth>
+      <DesignHeight>40</DesignHeight>
+      <Name>Default</Name>
+      <Width>240</Width>
+      <Height>71</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_title">
+          <StyleName>Title</StyleName>
+          <Bounds>8,2,227,24</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_details">
+          <StyleName>Details</StyleName>
+          <Bounds>8,35,227,11</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdby">
+          <StyleName>Created By</StyleName>
+          <Bounds>8,55,227,11</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="createdon">
+          <StyleName>Created On</StyleName>
+          <Bounds>8,45,227,11</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_category">
+          <StyleName>Category</StyleName>
+          <Bounds>8,25,227,11</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

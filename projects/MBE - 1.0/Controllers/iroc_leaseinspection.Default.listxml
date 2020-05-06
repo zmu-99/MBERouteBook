@@ -1,0 +1,111 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>iroc_leaseinspection</EntityName>
+    <CamelCase>iroc_leaseinspection</CamelCase>
+  </Attributes>
+  <Name>Default</Name>
+  <Kind>List</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <AutoHeader>1</AutoHeader>
+  <OrderBy>iroc_name</OrderBy>
+  <SerializedBindings>
+    <string>iroc_completedby</string>
+    <string>iroc_completedinspectiondate</string>
+    <string>iroc_inspectionplannedfordate</string>
+    <string>iroc_leaseinspectionid</string>
+    <string>iroc_name</string>
+    <string>iroc_leaseinspectionstatus</string>
+    <string>iroc_operatorname</string>
+    <string>iroc_padid</string>
+    <string>iroc_padid.account.ownerid</string>
+    <string>iroc_padid.account.ownerid.systemuser.fullname</string>
+  </SerializedBindings>
+  <MaxColumns>1</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="iroc_leaseinspection"/>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>100</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>primary</StyleName>
+          <Bounds>50,9,270,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_leaseinspectionstatus">
+          <StyleName>gray</StyleName>
+          <Bounds>43,42,155,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_inspectionplannedfordate">
+          <IsFormatted>false</IsFormatted>
+          <StyleName>Month:Day</StyleName>
+          <Bounds>0,13,41,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default-Copy</Name>
+      <Width>320</Width>
+      <Height>151</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="iroc_padid">
+          <StyleName>primary</StyleName>
+          <Bounds>71,15,249,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_leaseinspectionstatus">
+          <StyleName>primary</StyleName>
+          <Bounds>72,54,248,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_inspectionplannedfordate">
+          <StyleName>primary</StyleName>
+          <Bounds>72,90,248,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="Pad: ">
+          <IsConstant>true</IsConstant>
+          <StyleName>primary</StyleName>
+          <Bounds>0,15,58,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="Status:">
+          <IsConstant>true</IsConstant>
+          <StyleName>primary</StyleName>
+          <Bounds>0,55,59,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="Month:">
+          <IsConstant>true</IsConstant>
+          <StyleName>primary</StyleName>
+          <Bounds>0,89,58,27</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+        <CellTemplate SchemaName="iroc_completedby">
+          <StyleName>primary</StyleName>
+          <Bounds>72,124,248,20</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>5</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

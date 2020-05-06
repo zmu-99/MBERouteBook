@@ -1,0 +1,40 @@
+﻿<EntityList>
+  <Attributes>
+    <EntityName>msdyn_workordertype</EntityName>
+    <CamelCase>msdyn_workordertype</CamelCase>
+  </Attributes>
+  <Name>Visit Type Filter</Name>
+  <Kind>LookupList</Kind>
+  <AutoWideWidth>0</AutoWideWidth>
+  <OrderBy>msdyn_name</OrderBy>
+  <SerializedBindings>
+    <string>msdyn_workordertypeid</string>
+    <string>msdyn_name</string>
+  </SerializedBindings>
+  <IsHidden>true</IsHidden>
+  <MaxColumns>0</MaxColumns>
+  <Fetch version="1.0">
+    <entity name="msdyn_workordertype">
+      <filter type="and">
+        <condition attribute="msdyn_workordertypeid" operator="eq" value="{{iroc_visittypeid}}"/>
+      </filter>
+    </entity>
+  </Fetch>
+  <SerializedTemplates>
+    <RowTemplate>
+      <DesignWidth>320</DesignWidth>
+      <DesignHeight>48</DesignHeight>
+      <Name>Default</Name>
+      <Width>320</Width>
+      <Height>48</Height>
+      <SerializedChildren>
+        <CellTemplate SchemaName="msdyn_name">
+          <StyleName>primary</StyleName>
+          <Bounds>10,2,302,28</Bounds>
+          <CellKind>0</CellKind>
+          <Anchor>13</Anchor>
+        </CellTemplate>
+      </SerializedChildren>
+    </RowTemplate>
+  </SerializedTemplates>
+</EntityList>

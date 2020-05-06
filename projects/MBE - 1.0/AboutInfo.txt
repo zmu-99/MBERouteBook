@@ -1,0 +1,7 @@
+﻿Manufacturer=Equinor
+ProductTitle=Route Book by IROC
+ProductSubTitle=
+PoweredBy=Powered by Resco
+Icon=Logo.Logo.png
+Website=https://equinor.com
+SupportEmail=gm_IROCATX@equinor.com

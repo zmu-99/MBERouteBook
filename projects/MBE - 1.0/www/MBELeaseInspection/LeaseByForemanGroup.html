@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Lease Inspection</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="popper.min.js"></script>
+
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-toggle.min.css" />
+    <script type="text/javascript" src="bootstrap-toggle.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-multiselect.css" />
+    <script type="text/javascript" src="bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="../Schema.js"></script>
+    <script type="text/javascript" src="../Common.js"></script>
+    <script type="text/javascript" src="../Enums.js"></script>
+    <script type="text/javascript" src="LeaseByForemanGroup.js"></script>
+    <script type="text/javascript" src="../Telemetry.js"></script>
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.easy-pie-chart.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border-bottom: 3px solid #000;
+            font-size: 14px;
+            max-height: 35px;
+        }
+
+        .alert {
+            padding: 20px;
+            background-color: white;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+        .table-bordered thead tr {
+            border: 0px solid white;
+            background: #4078d1 !important;
+            color: white;
+            max-height: 35px;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: 1px solid white;
+        }
+        .btn-small {
+            padding: 2px 5px;
+            font-size: 9px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px
+        }
+    </style>
+</head>
+
+<body>
+
+    <main role="main">
+        <div id="optionset">
+            <table>
+                <tr>
+                    <td><input id="toggle-event" data-width="100" data-height="25" type="checkbox"  data-toggle="toggle" data-on="Completed" data-off="Scheduled"></td>
+                    <td style="text-align:right">New Job<img style="height:35px" src="plus.svg" alt="Add New" onclick='FS.RouteBoard.createNewJob()' /></td>
+                </tr>
+                <tr>
+                    <td>Foreman Group:</td>
+                    <td>
+                        <select id="foremangroupfilter" multiple="multiple">
+                        </select>
+                    </td>
+                </tr>
+                  <tr>
+                    <td>Resource</td>
+                    <td>
+                        <select id="resourcefilter" multiple="multiple">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Job Type:
+                    </td>
+                    <td>
+                        <select id="jobfilter" multiple="multiple">
+                         
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Date:
+                    </td>
+                    <td>
+                        <input id="datefilter" type="date" onchange="FS.RouteBoard.dateFilter('change',this); return false;">
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div id="brblist">
+            <table id="brbtablelist" class='table table-hover'><th class="brbtable"></th></table>
+        </div>
+        <div id="assign">
+            <table>
+                <tr>
+                    <th>
+                        <label for="foremangroupqueuefilter">Resources:</label>
+                        <select id="foremangroupqueuefilter">
+                            <option value=-1></option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <button type='button' class='btn btn-default btn-sm' onclick='FS.RouteBoard.onAssign()'>Save</button>&nbsp&nbsp&nbsp&nbsp
+                        <button type='button' class='btn btn-default btn-sm' onclick='FS.RouteBoard.onClose()'>Cancel</button>
+                    </th>
+                </tr>
+            </table>
+            <br />
+        </div>
+        <div id="reasons">
+            <table>
+                <tr>
+                    <th>
+                        <label for="reason">Reason:</label>
+                        <select id="reason">
+                            <option value=-1></option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <button type='button' class='btn btn-default btn-sm' onclick='FS.RouteBoard.onSave()'>Save</button>&nbsp&nbsp&nbsp&nbsp
+                        <button type='button' class='btn btn-default btn-sm' onclick='FS.RouteBoard.onClose()'>Cancel</button>
+                    </th>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+           
+
+
+           FS.RouteBoard.onloadFunction();
+          
+        });
+    </script>
+</body>
+</html>

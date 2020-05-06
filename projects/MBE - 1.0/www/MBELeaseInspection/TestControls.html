@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Lease Inspection</title>
+    <!-- Activate IE9 document mode, if available -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="ms-https-connections-only" content="true">
+    <!-- Defined iOS viewport -->
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="popper.min.js"></script>
+
+    <script type="text/javascript" src="bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-toggle.min.css" />
+    <script type="text/javascript" src="bootstrap-toggle.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="bootstrap-multiselect.css" />
+    <script type="text/javascript" src="bootstrap-multiselect.js"></script>
+    <script type="text/javascript" src="../JSBridge.js"></script>
+    <script type="text/javascript" src="../JSBridgeExtension.js"></script>
+    <script type="text/javascript" src="../Schema.js"></script>
+    <script type="text/javascript" src="../Common.js"></script>
+    <script type="text/javascript" src="../Enums.js"></script>
+
+    <script type="text/javascript" src="../Telemetry.js"></script>
+    <link rel="stylesheet" type="text/css" href="font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="jquery.easy-pie-chart.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border-bottom: 3px solid #000;
+            font-size: 14px;
+            max-height: 35px;
+        }
+
+        .alert {
+            padding: 20px;
+            background-color: white;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin-bottom: 15px;
+        }
+
+        .table-bordered thead tr {
+            border: 0px solid white;
+            background: #4078d1 !important;
+            color: white;
+            max-height: 35px;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: 1px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <div id="optionset">
+            <table>
+                <tr>
+                    <td>HTML multiselect:</td>
+                    <td>
+                        <select id="foremangroupfilter" multiple>
+                            <option value=-1>All</option>
+                            <option value=2>Scheduled Visit</option>
+                            <option value=-3>Alarm Response</option>
+                            <option value=4>Maintenance Support</option>
+                            <option value=5>Workover Support</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>HTML multiselect size =1:</td>
+                    <td>
+                        <select id="foremangroupfilter" multiple size="1">
+                            <option value=-1>All</option>
+                            <option value=2>Scheduled Visit</option>
+                            <option value=-3>Alarm Response</option>
+                            <option value=4>Maintenance Support</option>
+                            <option value=5>Workover Support</option>
+                        </select>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>HTML Single select html</td>
+                    <td>
+                        <select id="resourcefilter">
+                            <option value=-1>All</option>
+                            <option value=2>Scheduled Visit</option>
+                            <option value=-3>Alarm Response</option>
+                            <option value=4>Maintenance Support</option>
+                            <option value=5>Workover Support</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Bootstrap multiple:
+                    </td>
+                    <td>
+                        <select id="jobfilter" multiple="multiple">
+                            <option value=-1>All</option>
+                            <option value=2>Scheduled Visit</option>
+                            <option value=-3>Alarm Response</option>
+                            <option value=4>Maintenance Support</option>
+                            <option value=5>Workover Support</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </table>
+    </main>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#jobfilter').multiselect();
+
+        });
+    </script>
+</body>
+</html>
